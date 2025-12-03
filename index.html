@@ -23,15 +23,17 @@
                     },
                     colors: {
                         brand: {
-                            red: '#E31C25',
-                            dark: '#050505',
-                            card: '#121212',
-                            border: '#2A2A2A',
-                            input: '#1A1A1A'
+                            red: '#E31C25', /* Vermelho Marca */
+                            
+                            /* PALETA ZINC (CINZA CHUMBO PURO) */
+                            dark: '#09090b',   /* Zinc 950 */
+                            card: '#18181b',   /* Zinc 900 */
+                            border: '#27272a', /* Zinc 800 */
+                            input: '#27272a'   /* Zinc 800 */
                         }
                     },
                     backgroundImage: {
-                        'hero-glow': 'radial-gradient(circle at 50% 50%, rgba(227, 28, 37, 0.15) 0%, rgba(10, 10, 10, 1) 70%)',
+                        'hero-base': 'radial-gradient(circle at 50% 50%, rgba(227, 28, 37, 0.05) 0%, #09090b 100%)',
                     },
                     keyframes: {
                         fadeIn: {
@@ -53,13 +55,14 @@
     </script>
 
     <style>
+        /* Scrollbar Cinza Chumbo */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #E31C25; }
 
         .glass {
-            background: rgba(5, 5, 5, 0.85);
+            background: rgba(9, 9, 11, 0.85); /* Vidro Zinc */
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -82,9 +85,21 @@
         input:-webkit-autofill:hover, 
         input:-webkit-autofill:focus, 
         input:-webkit-autofill:active{
-            -webkit-box-shadow: 0 0 0 30px #1A1A1A inset !important;
+            -webkit-box-shadow: 0 0 0 30px #18181b inset !important;
             -webkit-text-fill-color: white !important;
             transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* --- MOUSE GLOW --- */
+        #hero-glow {
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(227, 28, 37, 0.15), 
+                transparent 40%
+            );
+            z-index: 1; 
+            pointer-events: none; 
+            transition: opacity 0.5s ease;
         }
     </style>
 </head>
@@ -112,9 +127,12 @@
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-hero-glow">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay"></div>
+    <section id="hero-section" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-brand-dark">
         
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay z-0"></div>
+        
+        <div id="hero-glow" class="absolute inset-0 w-full h-full"></div>
+
         <div class="container mx-auto px-6 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-border bg-brand-card mb-8 animate-fadeIn">
                 <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
@@ -131,16 +149,16 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeIn" style="animation-delay: 0.3s;">
-                <a href="#contato" class="w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold uppercase tracking-wider hover:bg-red-700 transition shadow-[0_0_20px_rgba(227,28,37,0.4)] rounded text-sm hover:-translate-y-1">
+                <a href="#contato" class="w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold uppercase tracking-wider hover:bg-red-700 transition shadow-[0_0_20px_rgba(227,28,37,0.4)] rounded text-sm hover:-translate-y-1 relative z-20">
                     AGENDAR EXPERIMENTAL
                 </a>
-                <a href="#metodo" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-gray-700 text-white font-bold uppercase tracking-wider hover:border-white transition rounded text-sm flex items-center justify-center gap-2 hover:-translate-y-1">
+                <a href="#metodo" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-gray-700 text-white font-bold uppercase tracking-wider hover:border-white transition rounded text-sm flex items-center justify-center gap-2 hover:-translate-y-1 relative z-20">
                     <i class="ph ph-arrow-down text-xl"></i> Conhecer Método
                 </a>
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-600">
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-600 z-10">
             <i class="ph ph-caret-double-down text-2xl"></i>
         </div>
     </section>
@@ -202,12 +220,12 @@
     </section>
 
     <section id="videos" class="relative w-full h-[60vh] md:h-[80vh] bg-black overflow-hidden border-t border-brand-border">
-        <video id="hero-video" class="w-full h-full object-cover transition-opacity duration-500" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop">
-            <source src="https://videos.pexels.com/video-files/4761426/4761426-hd_1920_1080_25fps.mp4" type="video/mp4">
+        <video id="hero-video" class="w-full h-full object-cover object-[50%_25%] transition-opacity duration-500" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop">
+            <source src="video1.mp4" type="video/mp4">
             Seu navegador não suporta vídeos.
         </video>
         
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-brand-dark/40 pointer-events-none"></div>
 
         <div class="absolute inset-0 flex flex-col justify-between p-8 md:p-12 pointer-events-none">
             <div class="pointer-events-auto">
@@ -216,11 +234,16 @@
             </div>
 
             <div class="flex justify-between items-end w-full pointer-events-auto">
-                
-                <div class="flex flex-col gap-2">
-                    <span id="vol-text" class="text-xs text-gray-300 uppercase tracking-widest opacity-0 transition duration-300">Sem Som</span>
-                    <button onclick="toggleMute()" id="mute-btn" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-brand-red hover:border-brand-red transition flex items-center justify-center group shadow-lg">
-                        <i id="vol-icon" class="ph ph-speaker-slash text-xl group-hover:scale-110 transition"></i>
+                <div class="flex items-end gap-4">
+                    <div class="flex flex-col gap-2">
+                        <span id="vol-text" class="text-xs text-gray-300 uppercase tracking-widest opacity-0 transition duration-300">Sem Som</span>
+                        <button onclick="toggleMute()" id="mute-btn" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-brand-red hover:border-brand-red transition flex items-center justify-center group shadow-lg">
+                            <i id="vol-icon" class="ph ph-speaker-slash text-xl group-hover:scale-110 transition"></i>
+                        </button>
+                    </div>
+
+                    <button onclick="toggleFullscreen()" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-brand-dark transition flex items-center justify-center group shadow-lg mb-0" title="Tela Cheia">
+                        <i class="ph ph-corners-out text-xl group-hover:scale-110 transition"></i>
                     </button>
                 </div>
 
@@ -246,7 +269,7 @@
                     <div class="w-full md:w-5/12 relative md:sticky md:top-24">
                         <div class="relative group">
                             <div class="absolute inset-0 bg-brand-red rounded-2xl rotate-3 opacity-20 group-hover:rotate-6 transition duration-500"></div>
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1974&auto=format&fit=crop" alt="Fundadores Únnic" class="relative rounded-2xl brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500 shadow-2xl w-full object-cover aspect-[3/4]">
+                            <img loading="lazy" src="QUEMSOMOS.jpg" alt="Fundadores Únnic" class="relative rounded-2xl brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500 shadow-2xl w-full object-cover aspect-[3/4]">
                         </div>
                         <div class="mt-4 text-center">
                             <span class="block text-white font-bold text-lg tracking-tight">Jacqueline & Fernando</span>
@@ -284,7 +307,7 @@
         </div>
     </section>
 
-    <section id="galeria" class="py-24 bg-black border-t border-brand-border">
+    <section id="galeria" class="py-24 bg-brand-dark border-t border-brand-border">
         <div class="container mx-auto px-6">
             <div class="mb-12 text-center">
                 <span class="text-brand-red font-bold uppercase tracking-widest text-xs">O Refúgio Urbano</span>
@@ -294,7 +317,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-auto md:h-[500px]">
                 <div onclick="openLightbox(0)" class="h-[300px] md:h-auto md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer border border-transparent hover:border-brand-red/50 transition duration-300">
                     <img loading="lazy" src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Sala EMS">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent flex items-end p-6">
                         <span class="text-white font-bold text-lg"><i class="ph ph-arrows-out-simple text-brand-red mr-2"></i>Sala EMS</span>
                     </div>
                 </div>
@@ -324,10 +347,10 @@
                     </div>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6 font-light">"Eu não tenho tempo a perder. A Únnic resolveu meu problema de treinar pesado sem gastar 2 horas do dia."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-white">R</div>
+                        <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-white">R</div>
                         <div>
                             <p class="text-white text-sm font-bold">Roberto M.</p>
-                            <p class="text-xs text-gray-500">Empresário</p>
+                            <p class="text-xs text-gray-400">Empresário</p>
                         </div>
                     </div>
                 </div>
@@ -337,10 +360,10 @@
                     </div>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6 font-light">"A tecnologia do ShapeSpace é incrível. A sensação pós-treino é de dever cumprido em tempo recorde."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-white">L</div>
+                        <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-white">L</div>
                         <div>
                             <p class="text-white text-sm font-bold">Lucas F.</p>
-                            <p class="text-xs text-gray-500">Advogado</p>
+                            <p class="text-xs text-gray-400">Advogado</p>
                         </div>
                     </div>
                 </div>
@@ -350,10 +373,10 @@
                     </div>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6 font-light">"Sofria com dores na lombar e o EMS ajudou muito no fortalecimento sem impacto. Hoje treino sem dor."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-white">C</div>
+                        <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-white">C</div>
                         <div>
                             <p class="text-white text-sm font-bold">Camila S.</p>
-                            <p class="text-xs text-gray-500">Médica</p>
+                            <p class="text-xs text-gray-400">Médica</p>
                         </div>
                     </div>
                 </div>
@@ -371,7 +394,7 @@
                             <span>A ÚNNIC é uma academia convencional?</span>
                             <span class="transition group-open:rotate-180"><i class="ph ph-caret-down text-brand-red"></i></span>
                         </summary>
-                        <div class="text-gray-400 mt-2 leading-relaxed pb-4 pl-4 border-l border-brand-border ml-2 text-lg font-light">
+                        <div class="text-gray-300 mt-2 leading-relaxed pb-4 pl-4 border-l border-brand-border ml-2 text-lg font-light">
                             Não. Somos um espaço tecnológico. Utilizamos eletroestimulação para resultados otimizados em sessões curtas de 20 minutos.
                         </div>
                     </details>
@@ -382,7 +405,7 @@
                             <span>É seguro para iniciantes?</span>
                             <span class="transition group-open:rotate-180"><i class="ph ph-caret-down text-brand-red"></i></span>
                         </summary>
-                        <div class="text-gray-400 mt-2 leading-relaxed pb-4 pl-4 border-l border-brand-border ml-2 text-lg font-light">
+                        <div class="text-gray-300 mt-2 leading-relaxed pb-4 pl-4 border-l border-brand-border ml-2 text-lg font-light">
                             Sim. Todos os treinos são 100% acompanhados por especialistas e a intensidade é ajustada individualmente.
                         </div>
                     </details>
@@ -409,7 +432,7 @@
         </div>
     </section>
 
-    <section id="contato" class="py-24 bg-gradient-to-b from-brand-card to-black border-t border-brand-border">
+    <section id="contato" class="py-24 bg-gradient-to-b from-brand-card to-brand-dark border-t border-brand-border">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
                 
@@ -418,13 +441,13 @@
                         <span class="text-xs font-bold text-brand-red uppercase tracking-widest">Sessão Experimental</span>
                     </div>
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Comece sua transformação hoje.</h2>
-                    <p class="text-gray-400 text-xl mb-8 leading-relaxed font-light">
+                    <p class="text-gray-300 text-xl mb-8 leading-relaxed font-light">
                         Preencha o formulário para agendar sua avaliação gratuita e conhecer a tecnologia que está mudando o fitness em Londrina.
                     </p>
 
                     <div class="space-y-6">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red">
+                            <div class="w-12 h-12 rounded bg-brand-card border border-brand-border flex items-center justify-center text-brand-red">
                                 <i class="ph ph-map-pin text-2xl"></i>
                             </div>
                             <div>
@@ -433,7 +456,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red">
+                            <div class="w-12 h-12 rounded bg-brand-card border border-brand-border flex items-center justify-center text-brand-red">
                                 <i class="ph ph-whatsapp-logo text-2xl"></i>
                             </div>
                             <div>
@@ -445,18 +468,18 @@
                 </div>
 
                 <div class="lg:w-1/2 w-full">
-                    <form onsubmit="handleSubmit(event)" class="bg-brand-dark p-6 md:p-10 rounded-3xl border border-brand-border shadow-2xl relative overflow-hidden group">
+                    <form onsubmit="handleSubmit(event)" class="bg-brand-card p-6 md:p-10 rounded-3xl border border-brand-border shadow-2xl relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red opacity-10 blur-[50px] pointer-events-none group-hover:opacity-20 transition"></div>
                         
                         <div class="space-y-6 relative z-10">
                             <div>
                                 <label class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 block">Nome Completo</label>
-                                <input type="text" required class="w-full bg-brand-input border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition placeholder-gray-600" placeholder="Seu nome">
+                                <input type="text" required class="w-full bg-brand-input border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition placeholder-gray-500" placeholder="Seu nome">
                             </div>
 
                             <div>
                                 <label class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 block">WhatsApp</label>
-                                <input type="tel" required class="w-full bg-brand-input border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition placeholder-gray-600" placeholder="(DDD) 99999-9999">
+                                <input type="tel" required class="w-full bg-brand-input border border-brand-border rounded px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition placeholder-gray-500" placeholder="(DDD) 99999-9999">
                             </div>
 
                             <div>
@@ -473,7 +496,7 @@
                                 AGENDAR EXPERIMENTAL
                             </button>
 
-                            <p class="text-center text-gray-600 text-xs mt-4">
+                            <p class="text-center text-gray-500 text-xs mt-4">
                                 <i class="ph-fill ph-lock-key mr-1"></i> Seus dados estão seguros.
                             </p>
                         </div>
@@ -481,7 +504,7 @@
                 </div>
             </div>
             
-            <div class="mt-20 pt-8 border-t border-brand-border text-center flex flex-col md:flex-row justify-between items-center text-gray-600 text-xs gap-4">
+            <div class="mt-20 pt-8 border-t border-brand-border text-center flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs gap-4">
                 <p>© 2024 ÚNNIC Eletrofitness. Todos os direitos reservados.</p>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-white transition">Privacidade</a>
@@ -532,34 +555,26 @@
             }, 1500);
         }
 
-        // --- LÓGICA DE VÍDEO (ATUALIZADA) ---
+        // --- LÓGICA DE VÍDEO ---
         const videoElement = document.getElementById('hero-video');
         const volIcon = document.getElementById('vol-icon');
         const volText = document.getElementById('vol-text');
 
-        // Playlist de Vídeos
         const videoSources = [
-            "https://videos.pexels.com/video-files/4761426/4761426-hd_1920_1080_25fps.mp4", // Girl running
-            "https://videos.pexels.com/video-files/4753965/4753965-hd_1920_1080_25fps.mp4", // Abs workout
-            "https://videos.pexels.com/video-files/6390196/6390196-hd_1920_1080_25fps.mp4"  // Man running
+            "https://videos.pexels.com/video-files/4761426/4761426-hd_1920_1080_25fps.mp4", 
+            "https://videos.pexels.com/video-files/4753965/4753965-hd_1920_1080_25fps.mp4", 
+            "https://videos.pexels.com/video-files/6390196/6390196-hd_1920_1080_25fps.mp4" 
         ];
         let currentVideoIndex = 0;
 
         function nextVideo() {
-            // Fade out
             videoElement.style.opacity = '0';
-            
             setTimeout(() => {
-                // Troca o source
                 currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
                 videoElement.src = videoSources[currentVideoIndex];
-                
-                // Play
                 videoElement.play();
-                
-                // Fade in
                 videoElement.style.opacity = '1';
-            }, 500); // 500ms espera a transição CSS
+            }, 500);
         }
 
         function toggleMute() {
@@ -577,8 +592,46 @@
             }
         }
         
-        // Passar automaticamente quando acabar o vídeo
         videoElement.addEventListener('ended', nextVideo);
+
+        // --- LÓGICA DE TELA CHEIA (NOVA) ---
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                if (videoElement.requestFullscreen) {
+                    videoElement.requestFullscreen();
+                } else if (videoElement.webkitRequestFullscreen) { /* Safari */
+                    videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) { /* IE11 */
+                    videoElement.msRequestFullscreen();
+                }
+                videoElement.controls = true; // Mostra controles nativos
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                videoElement.controls = false; // Esconde controles nativos
+            }
+        }
+
+        // Garante que a UI nativa suma se o usuário usar ESC para sair
+        document.addEventListener('fullscreenchange', (event) => {
+             if (!document.fullscreenElement) {
+                 videoElement.controls = false;
+             }
+        });
+
+        // --- LÓGICA DE MOUSE GLOW ---
+        const heroSection = document.getElementById('hero-section');
+        const heroGlow = document.getElementById('hero-glow');
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            heroGlow.style.setProperty('--mouse-x', `${x}px`);
+            heroGlow.style.setProperty('--mouse-y', `${y}px`);
+        });
 
         // --- LÓGICA DE LIGHTBOX ---
         const galleryImages = [
