@@ -6,12 +6,16 @@
     <meta name="description" content="ÚNNIC - O futuro do bem-estar. Eletrofitness e tecnologia em Londrina.">
     <title>ÚNNIC | Future Wellness</title>
     
+    <link rel="preload" as="style" href="https://cdn.tailwindcss.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -21,28 +25,28 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
+                        sans: ["Outfit", "sans-serif"],
                     },
                     colors: {
                         brand: {
-                            red: '#E31C25',
-                            dark: '#09090b',
-                            card: '#18181b',
-                            border: '#27272a',
-                            input: '#27272a'
+                            red: "#E31C25",
+                            dark: "#09090b",
+                            card: "#18181b",
+                            border: "#27272a",
+                            input: "#27272a"
                         }
                     },
                     backgroundImage: {
-                        'hero-base': 'radial-gradient(circle at 50% 50%, rgba(227, 28, 37, 0.05) 0%, #09090b 100%)',
+                        "hero-base": "radial-gradient(circle at 50% 50%, rgba(227, 28, 37, 0.05) 0%, #09090b 100%)",
                     },
                     animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+                        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
                     },
                     keyframes: {
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                            "0%": { opacity: "0", transform: "translateY(20px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
                         }
                     }
                 }
@@ -72,7 +76,7 @@
 
         .tech-border { position: relative; }
         .tech-border::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 2px;
+            content: ""; position: absolute; bottom: -2px; left: 0; width: 0%; height: 2px;
             background: #E31C25; transition: width 0.3s ease;
         }
         .tech-border:hover::after { width: 100%; }
@@ -130,6 +134,54 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* 15. Botão Voltar ao Topo */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #E31C25;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 50;
+            box-shadow: 0 4px 15px rgba(227, 28, 37, 0.4);
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(227, 28, 37, 0.6);
+        }
+
+        /* Menu Mobile */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* 13. Feedback visual (Skeleton Loader) */
+        .skeleton-bg {
+            background: linear-gradient(90deg, #27272a 25%, #3f3f46 50%, #27272a 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s ease-in-out infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body class="bg-brand-dark text-gray-200 antialiased selection:bg-brand-red selection:text-white">
@@ -146,17 +198,36 @@
                 <a href="#galeria" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition tech-border pb-1">Espaço</a>
             </div>
 
-            <a href="https://wa.me/seunumero" target="_blank" class="hidden md:inline-flex items-center justify-center gap-2 px-6 py-3 border border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all duration-300 rounded text-xs font-bold tracking-widest uppercase shadow-[0_0_10px_rgba(227,28,37,0.2)] hover:shadow-[0_0_20px_rgba(227,28,37,0.6)] group">
+            <a href="https://wa.me/5543988425992" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center justify-center gap-2 px-6 py-3 border border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all duration-300 rounded text-xs font-bold tracking-widest uppercase shadow-[0_0_10px_rgba(227,28,37,0.2)] hover:shadow-[0_0_20px_rgba(227,28,37,0.6)] group">
                 <i class="ph-fill ph-whatsapp-logo text-lg group-hover:animate-pulse"></i>
                 AGENDAR AVALIAÇÃO
             </a>
             
-            <a href="https://wa.me/seunumero" target="_blank" class="md:hidden inline-flex items-center gap-1 text-brand-red font-bold uppercase text-[9px] sm:text-[10px] tracking-widest border border-brand-red px-3 py-2 rounded hover:bg-brand-red hover:text-white transition whitespace-nowrap">
-                <i class="ph-fill ph-whatsapp-logo text-sm"></i>
-                AGENDAR
-            </a>
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Abrir menu principal">
+                <i class="ph ph-list text-3xl"></i>
+            </button>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-brand-dark z-[60] md:hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b border-brand-border">
+                <span class="text-2xl font-bold text-white">únnic<span class="text-brand-red">.</span></span>
+                <button id="mobile-menu-close" class="text-white p-2" aria-label="Fechar menu principal">
+                    <i class="ph ph-x text-3xl"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col p-6 space-y-6">
+                <a href="#metodo" class="text-lg font-bold uppercase tracking-widest text-white hover:text-brand-red transition mobile-menu-link">Método</a>
+                <a href="#quem-somos" class="text-lg font-bold uppercase tracking-widest text-white hover:text-brand-red transition mobile-menu-link">Quem Somos</a>
+                <a href="#galeria" class="text-lg font-bold uppercase tracking-widest text-white hover:text-brand-red transition mobile-menu-link">Espaço</a>
+                <a href="https://wa.me/5543988425992" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-red text-white font-bold uppercase tracking-wider transition rounded">
+                    <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                    AGENDAR AVALIAÇÃO
+                </a>
+            </nav>
+        </div>
+    </div>
 
     <section id="hero-section" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-brand-dark">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay z-0"></div>
@@ -178,7 +249,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.3s;">
-                <a href="https://wa.me/seunumero" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold uppercase tracking-wider hover:bg-red-700 transition shadow-[0_0_20px_rgba(227,28,37,0.4)] rounded text-sm hover:-translate-y-1 relative z-20 flex items-center justify-center gap-2">
+                <a href="https://wa.me/5543988425992" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold uppercase tracking-wider hover:bg-red-700 transition shadow-[0_0_20px_rgba(227,28,37,0.4)] rounded text-sm hover:-translate-y-1 relative z-20 flex items-center justify-center gap-2">
                     <i class="ph-fill ph-whatsapp-logo text-lg"></i> AGENDAR AVALIAÇÃO
                 </a>
                 <a href="#metodo" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-gray-700 text-white font-bold uppercase tracking-wider hover:border-white transition rounded text-sm flex items-center justify-center gap-2 hover:-translate-y-1 relative z-20">
@@ -254,11 +325,11 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 
-                <div class="w-full max-w-sm lg:w-5/12 mx-auto lg:mx-0 reveal">
-                    <div onclick="toggleFullscreen()" class="relative w-full aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(227,28,37,0.15)] border border-brand-border group cursor-pointer hover:border-brand-red/50 transition">
+                <div class="w-full max-sm lg:w-5/12 mx-auto lg:mx-0 reveal">
+                    <div onclick="toggleFullscreen()" class="relative w-full aspect-[9/16] rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(227,28,37,0.15)] border border-brand-border group cursor-pointer hover:border-brand-red/50 transition bg-zinc-900">
                         
-                        <video id="feature-video" class="w-full h-full object-cover" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop">
-                            <source src="video1.mp4" type="video/mp4">
+                        <video id="feature-video" class="w-full h-full object-cover transition-all duration-300" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop">
+                            <source src="https://videos.pexels.com/video-files/4761426/4761426-hd_1080_1920_25fps.mp4" type="video/mp4">
                         </video>
 
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 pointer-events-none"></div>
@@ -270,7 +341,7 @@
                         </div>
 
                         <div class="absolute bottom-6 right-6 z-20">
-                            <button onclick="event.stopPropagation(); toggleMute()" id="mute-btn" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-brand-red hover:border-brand-red transition flex items-center justify-center shadow-lg">
+                            <button onclick="event.stopPropagation(); toggleMute()" id="mute-btn" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-brand-red hover:border-brand-red transition flex items-center justify-center shadow-lg" aria-label="Alternar som">
                                 <i id="vol-icon" class="ph ph-speaker-slash text-lg"></i>
                             </button>
                         </div>
@@ -301,9 +372,9 @@
                     <div class="space-y-3">
                         <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-4">Assista aos Treinos:</h3>
                         
-                        <button onclick="changeVideo(0)" id="vid-btn-0" class="w-full flex items-center gap-4 p-3 rounded-xl bg-brand-card border border-brand-red/50 text-left transition hover:bg-brand-border group">
-                            <div class="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0">
-                                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition">
+                        <button onclick="changeVideo(0)" id="vid-btn-0" class="w-full flex items-center gap-4 p-3 rounded-xl bg-brand-card border border-brand-red/50 text-left transition hover:bg-brand-border group" aria-label="Reproduzir vídeo de treino de força">
+                            <div class="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0 skeleton-bg">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition" alt="Treino de força com eletroestimulação">
                                 <div class="absolute inset-0 flex items-center justify-center"><i class="ph-fill ph-play text-white"></i></div>
                             </div>
                             <div>
@@ -312,9 +383,9 @@
                             </div>
                         </button>
 
-                        <button onclick="changeVideo(1)" id="vid-btn-1" class="w-full flex items-center gap-4 p-3 rounded-xl bg-transparent border border-brand-border text-left transition hover:bg-brand-card group">
-                            <div class="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0">
-                                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition">
+                        <button onclick="changeVideo(1)" id="vid-btn-1" class="w-full flex items-center gap-4 p-3 rounded-xl bg-transparent border border-brand-border text-left transition hover:bg-brand-card group" aria-label="Reproduzir vídeo de cardio e queima">
+                            <div class="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0 skeleton-bg">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition" alt="Cardio intenso e queima de gordura">
                                 <div class="absolute inset-0 flex items-center justify-center"><i class="ph-fill ph-play text-white"></i></div>
                             </div>
                             <div>
@@ -323,9 +394,9 @@
                             </div>
                         </button>
 
-                         <button onclick="changeVideo(2)" id="vid-btn-2" class="w-full flex items-center gap-4 p-3 rounded-xl bg-transparent border border-brand-border text-left transition hover:bg-brand-card group">
-                            <div class="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0">
-                                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition">
+                         <button onclick="changeVideo(2)" id="vid-btn-2" class="w-full flex items-center gap-4 p-3 rounded-xl bg-transparent border border-brand-border text-left transition hover:bg-brand-card group" aria-label="Reproduzir vídeo de recuperação">
+                            <div class="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden relative flex-shrink-0 skeleton-bg">
+                                <img loading="lazy" src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition" alt="Sessão de recuperação e massagem">
                                 <div class="absolute inset-0 flex items-center justify-center"><i class="ph-fill ph-play text-white"></i></div>
                             </div>
                             <div>
@@ -350,7 +421,7 @@
                     <div class="w-full md:w-5/12 relative md:sticky md:top-24">
                         <div class="relative group">
                             <div class="absolute inset-0 bg-brand-red rounded-2xl rotate-3 opacity-20 group-hover:rotate-6 transition duration-500"></div>
-                            <img loading="lazy" src="QUEMSOMOS.jpg" alt="Fundadores Únnic" class="relative rounded-2xl brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500 shadow-2xl w-full object-cover aspect-[3/4]">
+                            <img loading="lazy" src="QUEMSOMOS.jpg" alt="Jacqueline e Fernando, fundadores da ÚNNIC" class="relative rounded-2xl brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500 shadow-2xl w-full object-cover aspect-[3/4] skeleton-bg">
                         </div>
                         <div class="mt-4 text-center">
                             <span class="block text-white font-bold text-lg tracking-tight">Jacqueline & Fernando</span>
@@ -393,55 +464,55 @@
                     
                     <div class="swiper-slide">
                         <div onclick="openLightbox(0)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img1.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img1.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Espaço de treino ÚNNIC com equipamentos de última geração">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(1)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Interior moderno e minimalista da academia ÚNNIC">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(2)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img2.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img2.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Área de recuperação e massoterapia tecnológica">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(3)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img4.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img4.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Sala de eletroestimulação ÚNNIC com espelhos">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(4)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img5.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img5.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Equipamento de treino tecnológico detalhe">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(5)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img6.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img6.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Recepção da academia ÚNNIC com design premium">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(6)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img7.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img7.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Ambiente de treino personalizado e exclusivo">
                         </div>
                     </div>
 
                     <div class="swiper-slide">
                         <div onclick="openLightbox(7)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img8.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img8.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Espaço de mobilidade e alongamento">
                         </div>
                     </div>
                     
-                      <div class="swiper-slide">
+                    <div class="swiper-slide">
                         <div onclick="openLightbox(8)" class="w-full h-full relative group cursor-pointer overflow-hidden rounded-2xl border border-brand-border hover:border-brand-red/50 transition duration-300">
-                            <img loading="lazy" src="img9.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100" alt="Galeria">
+                            <img loading="lazy" src="img9.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 skeleton-bg" alt="Vista geral da academia boutique em Londrina">
                         </div>
                     </div>
 
@@ -474,7 +545,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="bg-brand-card p-8 rounded-2xl border border-brand-border hover:border-brand-red/30 transition reveal" style="transition-delay: 0.1s;">
+                <div class="bg-brand-card p-8 rounded-2xl border border-brand-border hover:border-brand-red/30 transition reveal" style="transition-delay: 0.1s;">
                     <div class="flex text-brand-red mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -487,7 +558,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="bg-brand-card p-8 rounded-2xl border border-brand-border hover:border-brand-red/30 transition reveal" style="transition-delay: 0.2s;">
+                <div class="bg-brand-card p-8 rounded-2xl border border-brand-border hover:border-brand-red/30 transition reveal" style="transition-delay: 0.2s;">
                     <div class="flex text-brand-red mb-4">
                         <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
@@ -591,12 +662,12 @@
                             </h4>
                             <p class="text-gray-400 text-sm font-light">Av. Ayrton Senna da Silva, 70, Londrina/PR</p>
                         </div>
-                        <a href="https://maps.google.com/maps?ll=-23.323568,-51.189736&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Jo%C3%A3o+Huss,+74+-+Gleba+Fazenda+Palhano+Londrina+-+PR+86050-490" target="_blank" class="text-xs font-bold text-brand-red uppercase tracking-widest hover:text-white transition flex items-center gap-1 bg-brand-dark px-3 py-2 rounded border border-brand-border">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Ayrton+Senna+da+Silva,+70,+Londrina,+PR" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-red uppercase tracking-widest hover:text-white transition flex items-center gap-1 bg-brand-dark px-3 py-2 rounded border border-brand-border" aria-label="Abrir localização da Unidade Gleba Palhano no Google Maps">
                             GPS <i class="ph-bold ph-arrow-up-right"></i>
                         </a>
                     </div>
-                    <div class="w-full h-64 relative brightness-90 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.424343265149!2d-51.1923109238865!3d-23.33669145336049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94eb43636f4569af%3A0xe51100416972061!2sR.+Jo%C3%A3o+Huss%2C+74+-+Gleba+Fazenda+Palhano%2C+Londrina+-+PR%2C+86050-490!5e0!3m2!1spt-BR!2sbr!4v1701830000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="w-full h-64 relative brightness-90 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500 skeleton-bg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.424343265149!2d-51.1923109238865!3d-23.33669145336049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94eb43636f4569af%3A0xe51100416972061!2sR.+Jo%C3%A3o+Huss%2C+74+-+Gleba+Fazenda+Palhano%2C+Londrina+-+PR%2C+86050-490!5e0!3m2!1spt-BR!2sbr!4v1701830000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa da Unidade Gleba Palhano"></iframe>
                     </div>
                 </div>
 
@@ -608,12 +679,12 @@
                             </h4>
                             <p class="text-gray-400 text-sm font-light">Av. Pres. Castelo Branco, 90 - Londrina/PR</p>
                         </div>
-                        <a href="https://maps.google.com/maps?ll=-23.344465,-51.193233&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cayenne,+480+-+Terra+Bonita+Londrina+-+PR+86047-640" target="_blank" class="text-xs font-bold text-brand-red uppercase tracking-widest hover:text-white transition flex items-center gap-1 bg-brand-dark px-3 py-2 rounded border border-brand-border">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Presidente+Castelo+Branco,+90,+Londrina,+PR" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-red uppercase tracking-widest hover:text-white transition flex items-center gap-1 bg-brand-dark px-3 py-2 rounded border border-brand-border" aria-label="Abrir localização da Unidade Castelo no Google Maps">
                             GPS <i class="ph-bold ph-arrow-up-right"></i>
                         </a>
                     </div>
-                    <div class="w-full h-64 relative brightness-90 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3662.662589478423!2d-51.19580792388562!3d-23.364234954316974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94eb43058a974b21%3A0x675841445b9557a2!2sR.+Cayenne%2C+480+-+Terra+Bonita%2C+Londrina+-+PR%2C+86047-640!5e0!3m2!1spt-BR!2sbr!4v1701830000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="w-full h-64 relative brightness-90 saturate-50 hover:brightness-100 hover:saturate-100 transition duration-500 skeleton-bg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3662.662589478423!2d-51.19580792388562!3d-23.364234954316974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94eb43058a974b21%3A0x675841445b9557a2!2sR.+Cayenne%2C+480+-+Terra+Bonita%2C+Londrina+-+PR%2C+86047-640!5e0!3m2!1spt-BR!2sbr!4v1701830000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa da Unidade Castelo"></iframe>
                     </div>
                 </div>
 
@@ -633,7 +704,7 @@
                     Agende sua avaliação gratuita e conheça a tecnologia que está mudando o fitness em Londrina. Atendimento exclusivo via WhatsApp.
                 </p>
 
-                <a href="https://wa.me/seunumero" target="_blank" class="inline-flex items-center gap-4 bg-green-600 hover:bg-green-500 text-white font-bold uppercase tracking-widest px-8 py-5 rounded-lg text-lg transition transform hover:-translate-y-1 shadow-[0_0_25px_rgba(22,163,74,0.4)] hover:shadow-[0_0_40px_rgba(22,163,74,0.6)] group">
+                <a href="https://wa.me/5543988425992" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 bg-green-600 hover:bg-green-500 text-white font-bold uppercase tracking-widest px-8 py-5 rounded-lg text-lg transition transform hover:-translate-y-1 shadow-[0_0_25px_rgba(22,163,74,0.4)] hover:shadow-[0_0_40px_rgba(22,163,74,0.6)] group">
                     <i class="ph-fill ph-whatsapp-logo text-3xl group-hover:animate-bounce"></i>
                     AGENDAR AVALIAÇÃO
                 </a>
@@ -656,12 +727,8 @@
                         <span class="text-[10px] uppercase tracking-widest font-bold text-gray-500">Acompanhe</span>
                         
                         <div class="flex items-center gap-4">
-                            <a href="https://www.instagram.com/" target="_blank" class="w-10 h-10 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center hover:bg-brand-red hover:text-white hover:border-brand-red hover:-translate-y-1 transition-all duration-300 shadow-lg group">
+                            <a href="https://www.instagram.com/unnicgleba" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center hover:bg-brand-red hover:text-white hover:border-brand-red hover:-translate-y-1 transition-all duration-300 shadow-lg group" aria-label="Seguir ÚNNIC no Instagram">
                                 <i class="ph-fill ph-instagram-logo text-xl"></i>
-                            </a>
-                            
-                            <a href="https://www.facebook.com/" target="_blank" class="w-10 h-10 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center hover:bg-brand-red hover:text-white hover:border-brand-red hover:-translate-y-1 transition-all duration-300 shadow-lg group">
-                                <i class="ph-fill ph-facebook-logo text-xl"></i>
                             </a>
                         </div>
                     </div>
@@ -680,20 +747,24 @@
         </div>
     </section>
 
+    <div id="back-to-top" aria-label="Voltar ao topo">
+        <i class="ph-bold ph-arrow-up text-white text-2xl"></i>
+    </div>
+
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none">
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/50 hover:text-white hover:rotate-90 transition duration-300 z-[110]">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/50 hover:text-white hover:rotate-90 transition duration-300 z-[110]" aria-label="Fechar galeria">
             <i class="ph ph-x text-4xl"></i>
         </button>
-        <button onclick="changeImage(-1)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:-translate-x-1 transition z-[110] bg-black/20 p-2 rounded-full backdrop-blur-md">
+        <button onclick="changeImage(-1)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:-translate-x-1 transition z-[110] bg-black/20 p-2 rounded-full backdrop-blur-md" aria-label="Imagem anterior">
             <i class="ph ph-caret-left text-4xl md:text-6xl"></i>
         </button>
-        <button onclick="changeImage(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:translate-x-1 transition z-[110] bg-black/20 p-2 rounded-full backdrop-blur-md">
+        <button onclick="changeImage(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:translate-x-1 transition z-[110] bg-black/20 p-2 rounded-full backdrop-blur-md" aria-label="Próxima imagem">
             <i class="ph ph-caret-right text-4xl md:text-6xl"></i>
         </button>
         <div class="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
             <img id="lightbox-img" src="" alt="Galeria Expandida" class="max-w-full max-h-full object-contain rounded shadow-2xl transition-transform duration-300 scale-95 opacity-0">
             <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 px-4 py-1 rounded-full text-white text-xs tracking-widest border border-white/10 backdrop-blur-md">
-                <span id="lightbox-counter">1 / 4</span>
+                <span id="lightbox-counter">1 / 9</span>
             </div>
         </div>
     </div>
@@ -701,7 +772,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-        // --- 1. CONFIGURAÇÃO DO SWIPER (CARROSSEL) ---
+        // Configuração do Swiper (Carrossel)
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,      
             spaceBetween: 20,      
@@ -731,7 +802,7 @@
             },
         });
 
-        // --- 2. LÓGICA DE SCROLL REVEAL (ANIMAÇÃO AO ROLAR) ---
+        // Lógica de Scroll Reveal (Animação ao rolar)
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
 
@@ -746,13 +817,13 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        // Ativa uma vez ao carregar para pegar o que já está na tela
         reveal();
 
-        // --- 3. LÓGICA DE VÍDEO E PLAYLIST ---
-        const videoElement = document.getElementById('feature-video');
-        const volIcon = document.getElementById('vol-icon');
+        // Lógica de Vídeo e Playlist
+        const videoElement = document.getElementById("feature-video");
+        const volIcon = document.getElementById("vol-icon");
         
+        // 16. Vídeos inexistentes corrigidos (mantidos os links funcionais do código original/pexels)
         const videoSources = [
             "https://videos.pexels.com/video-files/4761426/4761426-hd_1080_1920_25fps.mp4", 
             "https://videos.pexels.com/video-files/6390196/6390196-hd_1080_1920_25fps.mp4", 
@@ -763,12 +834,15 @@
 
         function changeVideo(index) {
             currentVideoIndex = index;
-            videoElement.style.opacity = '0';
+            videoElement.style.opacity = "0";
+            // 14. Transição suave entre vídeos com blur
+            videoElement.style.filter = "blur(10px)";
             updatePlaylistUI(index);
             setTimeout(() => {
                 videoElement.src = videoSources[index];
                 videoElement.play();
-                videoElement.style.opacity = '1';
+                videoElement.style.opacity = "1";
+                videoElement.style.filter = "blur(0px)";
             }, 300);
         }
 
@@ -776,14 +850,14 @@
             for (let i = 0; i < videoSources.length; i++) {
                 const btn = document.getElementById(`vid-btn-${i}`);
                 if(btn) {
-                    btn.classList.remove('bg-brand-card', 'border-brand-red/50');
-                    btn.classList.add('bg-transparent', 'border-brand-border');
+                    btn.classList.remove("bg-brand-card", "border-brand-red/50");
+                    btn.classList.add("bg-transparent", "border-brand-border");
                 }
             }
             const activeBtn = document.getElementById(`vid-btn-${activeIndex}`);
             if(activeBtn) {
-                activeBtn.classList.remove('bg-transparent', 'border-brand-border');
-                activeBtn.classList.add('bg-brand-card', 'border-brand-red/50');
+                activeBtn.classList.remove("bg-transparent", "border-brand-border");
+                activeBtn.classList.add("bg-brand-card", "border-brand-red/50");
             }
         }
 
@@ -795,9 +869,9 @@
         function toggleMute() {
             videoElement.muted = !videoElement.muted;
             if (videoElement.muted) {
-                volIcon.classList.replace('ph-speaker-high', 'ph-speaker-slash');
+                volIcon.classList.replace("ph-speaker-high", "ph-speaker-slash");
             } else {
-                volIcon.classList.replace('ph-speaker-slash', 'ph-speaker-high');
+                volIcon.classList.replace("ph-speaker-slash", "ph-speaker-high");
             }
         }
 
@@ -813,84 +887,125 @@
             }
         }
         
-        document.addEventListener('fullscreenchange', (event) => {
+        document.addEventListener("fullscreenchange", (event) => {
              if (!document.fullscreenElement) {
                  videoElement.controls = false;
              }
         });
 
-        videoElement.addEventListener('ended', nextVideo);
+        videoElement.addEventListener("ended", nextVideo);
 
-        // --- 4. LÓGICA DE MOUSE GLOW ---
-        const heroSection = document.getElementById('hero-section');
-        const heroGlow = document.getElementById('hero-glow');
+        // Lógica de Mouse Glow
+        const heroSection = document.getElementById("hero-section");
+        const heroGlow = document.getElementById("hero-glow");
 
-        heroSection.addEventListener('mousemove', (e) => {
+        heroSection.addEventListener("mousemove", (e) => {
             const rect = heroSection.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            heroGlow.style.setProperty('--mouse-x', `${x}px`);
-            heroGlow.style.setProperty('--mouse-y', `${y}px`);
+            heroGlow.style.setProperty("--mouse-x", `${x}px`);
+            heroGlow.style.setProperty("--mouse-y", `${y}px`);
         });
 
-        // --- 5. LÓGICA DE LIGHTBOX ---
+        // 10. Lógica Menu Mobile (Adicionada)
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenuClose = document.getElementById("mobile-menu-close");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileLinks = document.querySelectorAll(".mobile-menu-link");
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle("open");
+        }
+
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener("click", toggleMobileMenu);
+        if(mobileMenuClose) mobileMenuClose.addEventListener("click", toggleMobileMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("open");
+            });
+        });
+
+        // 15. Lógica Botão Voltar ao Topo (Adicionada)
+        const backToTopBtn = document.getElementById("back-to-top");
+        
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        // Lógica de Lightbox (Completa)
         const galleryImages = [
-            "img1.jpg", "img.jpg", "img2.jpg", "img4.jpg", "img5.png",
-            "img6.png", "img7.png", "img8.png", "img9.png"
+            "img1.jpg", "img.jpg", "img2.jpg", 
+            "img4.jpg", "img5.png", "img6.png", 
+            "img7.png", "img8.png", "img9.png"
         ];
         
         let currentLightboxIndex = 0;
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCounter = document.getElementById('lightbox-counter');
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCounter = document.getElementById("lightbox-counter");
 
         function openLightbox(index) {
             currentLightboxIndex = index;
             updateLightboxImage();
-            lightbox.classList.remove('hidden');
+            lightbox.classList.remove("hidden");
+            // Pequeno delay para permitir a transição de opacidade
             setTimeout(() => {
-                lightbox.classList.remove('opacity-0', 'pointer-events-none');
-                lightboxImg.classList.remove('scale-95', 'opacity-0');
+                lightbox.classList.remove("opacity-0", "pointer-events-none");
+                lightboxImg.classList.remove("scale-95", "opacity-0");
             }, 10);
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = "hidden"; // Previne scroll no fundo
         }
 
         function closeLightbox() {
-            lightbox.classList.add('opacity-0', 'pointer-events-none');
-            lightboxImg.classList.add('scale-95', 'opacity-0');
+            lightbox.classList.add("opacity-0", "pointer-events-none");
+            lightboxImg.classList.add("scale-95", "opacity-0");
             setTimeout(() => {
-                lightbox.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                lightbox.classList.add("hidden");
+                document.body.style.overflow = "auto";
             }, 300);
         }
 
         function changeImage(direction) {
-            lightboxImg.classList.add('opacity-50');
+            currentLightboxIndex += direction;
+            if (currentLightboxIndex >= galleryImages.length) {
+                currentLightboxIndex = 0;
+            } else if (currentLightboxIndex < 0) {
+                currentLightboxIndex = galleryImages.length - 1;
+            }
+            
+            // Efeito de fade rápido na troca
+            lightboxImg.style.opacity = "0";
             setTimeout(() => {
-                currentLightboxIndex += direction;
-                if (currentLightboxIndex >= galleryImages.length) currentLightboxIndex = 0;
-                if (currentLightboxIndex < 0) currentLightboxIndex = galleryImages.length - 1;
                 updateLightboxImage();
-                lightboxImg.classList.remove('opacity-50');
+                lightboxImg.style.opacity = "1";
             }, 200);
         }
 
         function updateLightboxImage() {
             lightboxImg.src = galleryImages[currentLightboxIndex];
-            lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
+            lightboxCounter.innerText = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
         }
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+        // Fechar lightbox com ESC
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+                closeLightbox();
+            }
         });
 
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.classList.contains('hidden')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') changeImage(1);
-            if (e.key === 'ArrowLeft') changeImage(-1);
-        });
     </script>
 </body>
 </html>
